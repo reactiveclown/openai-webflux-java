@@ -1,6 +1,7 @@
 package com.reactiveclown.openaiwebfluxclient;
 
-import com.reactiveclown.openaiwebfluxclient.asynchronous.models.ListModelsResponse;
+import com.reactiveclown.openaiwebfluxclient.asynchronous.completions.CreateCompletionRequest;
+import com.reactiveclown.openaiwebfluxclient.asynchronous.completions.CreateCompletionResponse;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -11,21 +12,27 @@ import org.springframework.web.reactive.function.client.WebClient;
 @SpringBootApplication
 public class OpenaiWebfluxClientApplication {
 
-	@Autowired
-	 WebClient client;
+    @Autowired
+    WebClient client;
 
-	public static void main(String[] args) {
-		SpringApplication.run(OpenaiWebfluxClientApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(OpenaiWebfluxClientApplication.class, args);
+    }
 
-	@PostConstruct
-	public void someSort(){
+    @PostConstruct
+    public void someSort() {
 
-		var monoResponse = client.get()
-				.uri("/models")
-				.retrieve()
-				.bodyToMono(ListModelsResponse.class);
+        var request = new CreateCompletionRequest
+                .Builder("babbage")
+                .logprobs(1)
+                .build();
 
-		ListModelsResponse response = monoResponse.block();
-	}
+        var response = client.post()
+                .uri("/completions")
+                .bodyValue(request)
+                .retrieve()
+                .bodyToMono(CreateCompletionResponse.class)
+                .block();
+        System.out.println(response);
+    }
 }
