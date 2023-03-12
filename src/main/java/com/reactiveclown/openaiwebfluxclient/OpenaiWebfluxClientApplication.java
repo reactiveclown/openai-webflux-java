@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.List;
+
 
 @SpringBootApplication
 public class OpenaiWebfluxClientApplication {
@@ -24,7 +26,7 @@ public class OpenaiWebfluxClientApplication {
 
         var request = new CreateCompletionRequest
                 .Builder("babbage")
-                .logprobs(1)
+                .promptListOfLists(List.of(List.of("prompt")))
                 .build();
 
         var response = client.post()

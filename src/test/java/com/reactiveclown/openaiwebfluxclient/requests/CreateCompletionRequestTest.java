@@ -4,6 +4,7 @@ import com.reactiveclown.openaiwebfluxclient.asynchronous.completions.CreateComp
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,7 +20,7 @@ public class CreateCompletionRequestTest {
                 null, null, null,
                 null);
         assertAll(() -> {
-            assertEquals("<|endoftext|>", request.prompt()[0][0]);
+            assertEquals("<|endoftext|>", request.prompt().get(0).get(0));
             assertNull(request.suffix());
             assertEquals(16, request.maxTokens());
             assertEquals(1.0, request.temperature());
@@ -143,7 +144,7 @@ public class CreateCompletionRequestTest {
 
     @Test
     public void CreateCompletionRequest_stopSizeMoreThanRestriction_test() {
-        var stop = new String[]{"1", "2", "3", "4", "5"};
+        var stop = List.of("1", "2", "3", "4", "5");
         var exception = assertThrows(IllegalArgumentException.class, () -> new CreateCompletionRequest(
                 "model", null, null,
                 null, null, null,
@@ -219,7 +220,7 @@ public class CreateCompletionRequestTest {
                 null);
 
         assertAll(() -> {
-            assertEquals(request.prompt()[0][0], builderRequest.prompt()[0][0]);
+            assertEquals(request.prompt(), builderRequest.prompt());
             assertEquals(request.suffix(), builderRequest.suffix());
             assertEquals(request.maxTokens(), builderRequest.maxTokens());
             assertEquals(request.temperature(), builderRequest.temperature());

@@ -2,11 +2,10 @@ package com.reactiveclown.openaiwebfluxclient.asynchronous.completions;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Collections;
-import java.util.Map;
+import java.util.*;
 
 public record CreateCompletionRequest(@JsonProperty("model") String model,
-                                      @JsonProperty("prompt") String[][] prompt,
+                                      @JsonProperty("prompt") List<List<String>> prompt,
                                       @JsonProperty("suffix") String suffix,
                                       @JsonProperty("max_tokens") Integer maxTokens,
                                       @JsonProperty("temperature") Double temperature,
@@ -15,7 +14,7 @@ public record CreateCompletionRequest(@JsonProperty("model") String model,
                                       @JsonProperty("stream") Boolean stream,
                                       @JsonProperty("logprobs") Integer logprobs,
                                       @JsonProperty("echo") Boolean echo,
-                                      @JsonProperty("stop") String[] stop,
+                                      @JsonProperty("stop") List<String> stop,
                                       @JsonProperty("presence_penalty") Double presencePenalty,
                                       @JsonProperty("frequency_penalty") Double frequencyPenalty,
                                       @JsonProperty("best_of") Integer bestOf,
@@ -23,7 +22,7 @@ public record CreateCompletionRequest(@JsonProperty("model") String model,
                                       @JsonProperty("user") String user) {
     public CreateCompletionRequest {
         //Providing the default values
-        if (prompt == null) prompt = new String[][]{{"<|endoftext|>"}};
+        if (prompt == null) prompt = List.of(List.of("<|endoftext|>"));
         if (maxTokens == null) maxTokens = 16;
         if (temperature == null) temperature = 1.0;
         if (topP == null) topP = 1.0;
@@ -41,7 +40,7 @@ public record CreateCompletionRequest(@JsonProperty("model") String model,
         if (temperature > 2.0 || temperature < 0.0) throw new IllegalArgumentException("temperature value should be between [0.0, 2.0]");
         if (topP > 1.0 || topP < 0.0) throw new IllegalArgumentException("topP value should be between [0.0, 1.0]");
         if (logprobs != null && logprobs < 0) throw new IllegalArgumentException("logprobs value should be greater than 0.0");
-        if (stop != null && stop.length > 4) throw new IllegalArgumentException("stop size can't be greater than 4");
+        if (stop != null && stop.size() > 4) throw new IllegalArgumentException("stop size can't be greater than 4");
         if (presencePenalty > 2.0 || presencePenalty < -2.0) throw new IllegalArgumentException("presencePenalty value should be between [-2.0, 2.0]");
         if (frequencyPenalty > 2.0 || frequencyPenalty < -2.0) throw new IllegalArgumentException("frequencyPenalty value should be between [-2.0, 2.0]");
 
@@ -49,7 +48,7 @@ public record CreateCompletionRequest(@JsonProperty("model") String model,
 
     public static final class Builder {
         String model;
-        String[][] prompt;
+        List<List<String>> prompt;
         String suffix;
         Integer maxTokens;
         Double temperature;
@@ -58,7 +57,7 @@ public record CreateCompletionRequest(@JsonProperty("model") String model,
         Boolean stream;
         Integer logprobs;
         Boolean echo;
-        String[] stop;
+        List<String> stop;
         Double presencePenalty;
         Double frequencyPenalty;
         Integer bestOf;
@@ -80,18 +79,16 @@ public record CreateCompletionRequest(@JsonProperty("model") String model,
         }
 
         public Builder prompt(String prompt) {
-            this.prompt = new String[1][1];
-            this.prompt[0][0] = prompt;
+            this.prompt = List.of(List.of(prompt));
             return this;
         }
 
-        public Builder prompt(String[] prompt) {
-            this.prompt = new String[1][prompt.length];
-            this.prompt[0] = prompt;
+        public Builder promptList(List<String> prompt) {
+            this.prompt = List.of(prompt);
             return this;
         }
 
-        public Builder prompt(String[][] prompt) {
+        public Builder promptListOfLists(List<List<String>> prompt) {
             this.prompt = prompt;
             return this;
         }
@@ -137,12 +134,11 @@ public record CreateCompletionRequest(@JsonProperty("model") String model,
         }
 
         public Builder stop(String stop) {
-            this.stop = new String[1];
-            this.stop[0] = stop;
+            this.stop = List.of(stop);
             return this;
         }
 
-        public Builder stop(String[] stop) {
+        public Builder stop(List<String> stop) {
             this.stop = stop;
             return this;
         }
