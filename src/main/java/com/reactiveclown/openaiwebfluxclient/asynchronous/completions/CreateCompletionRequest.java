@@ -22,7 +22,29 @@ public record CreateCompletionRequest(@JsonProperty("model") String model,
                                       @JsonProperty("logit_bias") Map<String, Integer> logitBias,
                                       @JsonProperty("user") String user) {
     public CreateCompletionRequest {
-        if(model == null || model.isBlank()) throw new IllegalArgumentException("model can't be null or blank");
+        //Providing the default values
+        if (prompt == null) prompt = new String[][]{{"<|endoftext|>"}};
+        if (maxTokens == null) maxTokens = 16;
+        if (temperature == null) temperature = 1.0;
+        if (topP == null) topP = 1.0;
+        if (n == null) n = 1;
+        if (stream == null) stream = false;
+        if (echo == null) echo = false;
+        if (presencePenalty == null) presencePenalty = 0.0;
+        if (frequencyPenalty == null) frequencyPenalty = 0.0;
+        if (bestOf == null) bestOf = 1;
+        if (logitBias == null) logitBias = Collections.emptyMap();
+        if (user == null) user = "";
+
+        //Checking the restrictions
+        if (model == null || model.isBlank()) throw new IllegalArgumentException("model value can't be null or blank");
+        if (temperature > 2.0 || temperature < 0.0) throw new IllegalArgumentException("temperature value should be between [0.0, 2.0]");
+        if (topP > 1.0 || topP < 0.0) throw new IllegalArgumentException("topP value should be between [0.0, 1.0]");
+        if (logprobs != null && logprobs < 0) throw new IllegalArgumentException("logprobs value should be greater than 0.0");
+        if (stop != null && stop.length > 4) throw new IllegalArgumentException("stop size can't be greater than 4");
+        if (presencePenalty > 2.0 || presencePenalty < -2.0) throw new IllegalArgumentException("presencePenalty value should be between [-2.0, 2.0]");
+        if (frequencyPenalty > 2.0 || frequencyPenalty < -2.0) throw new IllegalArgumentException("frequencyPenalty value should be between [-2.0, 2.0]");
+
     }
 
     public static final class Builder {
@@ -44,51 +66,6 @@ public record CreateCompletionRequest(@JsonProperty("model") String model,
         String user;
 
         public CreateCompletionRequest build() {
-            if (this.prompt == null) {
-                this.prompt = new String[][]{{"<|endoftext|>"}};
-            }
-            if (this.suffix == null) {
-                this.suffix = null;
-            }
-            if (this.maxTokens == null) {
-                this.maxTokens = 16;
-            }
-            if (this.temperature == null) {
-                this.temperature = 1.0;
-            }
-            if (this.topP == null) {
-                this.topP = 1.0;
-            }
-            if (this.n == null) {
-                this.n = 1;
-            }
-            if (this.stream == null) {
-                this.stream = false;
-            }
-            if (this.logprobs == null) {
-                this.logprobs = null;
-            }
-            if (this.echo == null) {
-                this.echo = false;
-            }
-            if (this.stop == null) {
-                this.stop = null;
-            }
-            if (this.presencePenalty == null) {
-                this.presencePenalty = 0.0;
-            }
-            if (this.frequencyPenalty == null) {
-                this.frequencyPenalty = 0.0;
-            }
-            if (this.bestOf == null) {
-                this.bestOf = 1;
-            }
-            if (this.logitBias == null) {
-                this.logitBias = Collections.emptyMap();
-            }
-            if (this.user == null) {
-                this.user = "";
-            }
             return new CreateCompletionRequest(
                     model, prompt, suffix,
                     maxTokens, temperature, topP,
