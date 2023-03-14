@@ -36,33 +36,46 @@ public record CreateCompletionRequest(@JsonProperty("model") String model,
         if (user == null) user = "";
 
         //Checking the restrictions
-        if (model == null || model.isBlank()) throw new IllegalArgumentException("model value can't be null or blank");
-        if (temperature > 2.0 || temperature < 0.0) throw new IllegalArgumentException("temperature value should be between [0.0, 2.0]");
-        if (topP > 1.0 || topP < 0.0) throw new IllegalArgumentException("topP value should be between [0.0, 1.0]");
-        if (logprobs != null && logprobs < 0) throw new IllegalArgumentException("logprobs value should be greater than 0.0");
-        if (stop != null && stop.size() > 4) throw new IllegalArgumentException("stop size can't be greater than 4");
-        if (presencePenalty > 2.0 || presencePenalty < -2.0) throw new IllegalArgumentException("presencePenalty value should be between [-2.0, 2.0]");
-        if (frequencyPenalty > 2.0 || frequencyPenalty < -2.0) throw new IllegalArgumentException("frequencyPenalty value should be between [-2.0, 2.0]");
+        if (model == null || model.isBlank())
+            throw new IllegalArgumentException("model value can't be null or blank");
+
+        if (temperature > 2.0 || temperature < 0.0)
+            throw new IllegalArgumentException("temperature value should be between [0.0, 2.0]");
+
+        if (topP > 1.0 || topP < 0.0)
+            throw new IllegalArgumentException("topP value should be between [0.0, 1.0]");
+
+        if (logprobs != null && logprobs < 0)
+            throw new IllegalArgumentException("logprobs value should be greater than 0.0");
+
+        if (stop != null && stop.size() > 4)
+            throw new IllegalArgumentException("stop size can't be greater than 4");
+
+        if (presencePenalty > 2.0 || presencePenalty < -2.0)
+            throw new IllegalArgumentException("presencePenalty value should be between [-2.0, 2.0]");
+
+        if (frequencyPenalty > 2.0 || frequencyPenalty < -2.0)
+            throw new IllegalArgumentException("frequencyPenalty value should be between [-2.0, 2.0]");
 
     }
 
     public static final class Builder {
-        String model;
-        List<List<String>> prompt;
-        String suffix;
-        Integer maxTokens;
-        Double temperature;
-        Double topP;
-        Integer n;
-        Boolean stream;
-        Integer logprobs;
-        Boolean echo;
-        List<String> stop;
-        Double presencePenalty;
-        Double frequencyPenalty;
-        Integer bestOf;
-        Map<String, Integer> logitBias;
-        String user;
+        private final String model;
+        private List<List<String>> prompt;
+        private String suffix;
+        private Integer maxTokens;
+        private Double temperature;
+        private Double topP;
+        private Integer n;
+        private Boolean stream;
+        private Integer logprobs;
+        private Boolean echo;
+        private List<String> stop;
+        private Double presencePenalty;
+        private Double frequencyPenalty;
+        private Integer bestOf;
+        private Map<String, Integer> logitBias;
+        private String user;
 
         public CreateCompletionRequest build() {
             return new CreateCompletionRequest(

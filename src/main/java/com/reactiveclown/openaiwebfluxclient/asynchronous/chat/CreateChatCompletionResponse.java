@@ -14,6 +14,6 @@ public record CreateChatCompletionResponse(@JsonProperty("id") String id,
 
 record Choice(@JsonProperty("index") Integer index,
               @JsonProperty("message") Message message,
-              @JsonProperty("finishReason") String finishReason) {
+              @JsonProperty("finish_reason") String finishReason) {
 
 }
