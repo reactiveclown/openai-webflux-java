@@ -1,4 +1,4 @@
-package com.reactiveclown.openaiwebfluxclient.asynchronous.chat;
+package com.reactiveclown.openaiwebfluxclient.client.chat;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

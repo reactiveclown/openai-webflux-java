@@ -1,6 +1,6 @@
 package com.reactiveclown.openaiwebfluxclient.requests;
 
-import com.reactiveclown.openaiwebfluxclient.asynchronous.completions.CreateCompletionRequest;
+import com.reactiveclown.openaiwebfluxclient.client.completions.CreateCompletionRequest;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.reactiveclown.openaiwebfluxclient.asynchronous.images;
+package com.reactiveclown.openaiwebfluxclient.client.images;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

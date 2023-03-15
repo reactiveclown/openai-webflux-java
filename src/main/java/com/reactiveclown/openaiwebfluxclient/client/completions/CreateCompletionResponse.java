@@ -1,7 +1,7 @@
-package com.reactiveclown.openaiwebfluxclient.asynchronous.completions;
+package com.reactiveclown.openaiwebfluxclient.client.completions;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.reactiveclown.openaiwebfluxclient.asynchronous.Usage;
+import com.reactiveclown.openaiwebfluxclient.client.Usage;
 
 import java.util.List;
 import java.util.Map;

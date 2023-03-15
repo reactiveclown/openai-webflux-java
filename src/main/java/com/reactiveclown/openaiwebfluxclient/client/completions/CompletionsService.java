@@ -1,4 +1,4 @@
-package com.reactiveclown.openaiwebfluxclient.asynchronous.completions;
+package com.reactiveclown.openaiwebfluxclient.client.completions;
 
 import reactor.core.publisher.Mono;
 

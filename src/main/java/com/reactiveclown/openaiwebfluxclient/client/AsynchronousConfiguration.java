@@ -1,4 +1,4 @@
-package com.reactiveclown.openaiwebfluxclient.asynchronous;
+package com.reactiveclown.openaiwebfluxclient.client;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

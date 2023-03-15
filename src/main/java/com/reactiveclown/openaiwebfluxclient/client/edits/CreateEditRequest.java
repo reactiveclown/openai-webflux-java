@@ -1,4 +1,4 @@
-package com.reactiveclown.openaiwebfluxclient.asynchronous.edits;
+package com.reactiveclown.openaiwebfluxclient.client.edits;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
