@@ -18,6 +18,7 @@ public class EditsServiceImpl implements EditsService {
         String createEditUrl = "/edits";
         return client.post()
                 .uri(createEditUrl)
+                .bodyValue(request)
                 .retrieve()
                 .bodyToMono(CreateEditResponse.class);
     }

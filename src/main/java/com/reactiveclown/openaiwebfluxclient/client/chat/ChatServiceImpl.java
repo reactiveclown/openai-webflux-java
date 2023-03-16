@@ -17,6 +17,7 @@ public class ChatServiceImpl implements ChatService{
         String createChatCompletionUrl = "/completions";
         return client.post()
                 .uri(createChatCompletionUrl)
+                .bodyValue(request)
                 .retrieve()
                 .bodyToMono(CreateChatCompletionResponse.class);
     }
