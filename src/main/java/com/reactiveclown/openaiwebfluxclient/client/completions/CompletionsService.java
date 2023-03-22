@@ -7,8 +7,8 @@ public interface CompletionsService {
     /**
      * Creates a completion for the provided prompt and parameters.
      *
-     * @param request - {@link CreateCompletionRequest}
-     * @return {@link CreateCompletionResponse}
+     * @param request {@link CreateCompletionRequest}
+     * @return A Mono of {@link CreateCompletionResponse}
      */
     Mono<CreateCompletionResponse> createCompletion(CreateCompletionRequest request);
 }
