@@ -1,5 +1,7 @@
 package com.reactiveclown.openaiwebfluxclient.client.chat;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
@@ -45,6 +47,7 @@ import java.util.Map;
  * @param user             - A unique identifier representing your end-user,
  *                         which can help OpenAI to monitor and detect abuse
  */
+@JsonInclude(Include.NON_NULL)
 public record CreateChatCompletionRequest(@JsonProperty("model") String model,
                                           @JsonProperty("messages") List<MessageData> messages,
                                           @JsonProperty("temperature") Double temperature,
