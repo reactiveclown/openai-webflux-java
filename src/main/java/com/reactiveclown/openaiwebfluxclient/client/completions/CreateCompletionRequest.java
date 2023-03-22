@@ -102,6 +102,10 @@ public record CreateCompletionRequest(@JsonProperty("model") String model,
             throw new IllegalArgumentException("model value can't be null or blank");
     }
 
+    public static Builder builder(String model){
+        return new Builder(model);
+    }
+
     public static final class Builder {
         private final String model;
         private List<List<String>> prompt;
