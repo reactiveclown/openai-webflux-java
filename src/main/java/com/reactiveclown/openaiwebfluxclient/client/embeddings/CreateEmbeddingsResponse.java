@@ -1,17 +1,18 @@
 package com.reactiveclown.openaiwebfluxclient.client.embeddings;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.reactiveclown.openaiwebfluxclient.client.UsageData;
 
 import java.util.List;
 
-public record CreateEmbeddingsResponse(String object,
-                                       List<Embedding> data,
-                                       String model,
-                                       UsageData usage) {
+public record CreateEmbeddingsResponse(@JsonProperty("object") String object,
+                                       @JsonProperty("data") List<EmbeddingData> data,
+                                       @JsonProperty("model") String model,
+                                       @JsonProperty("usage") UsageData usage) {
 }
 
-record Embedding(String object,
-                 List<Double> embedding,
-                 Integer index) {
+record EmbeddingData(@JsonProperty("object") String object,
+                     @JsonProperty("embedding") List<Double> embedding,
+                     @JsonProperty("index") Integer index) {
 
 }
