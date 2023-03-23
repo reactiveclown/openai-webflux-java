@@ -1,5 +1,20 @@
 package com.reactiveclown.openaiwebfluxclient.client.images;
 
+/**
+ * CreateImageEditRequest.
+ *
+ * @param image          - The image to edit. Must be a valid PNG file, less than 4MB, and square.
+ *                       If mask is not provided, image must have transparency, which will be used as the mask.
+ * @param mask           - An additional image whose fully transparent areas (e.g. where alpha is zero)
+ *                       indicate where image should be edited. Must be a valid PNG file,
+ *                       less than 4MB, and have the same dimensions as image.
+ * @param prompt         - A text description of the desired image(s). The maximum length is 1000 characters.
+ * @param n              - The number of images to generate. Must be between 1 and 10.
+ * @param size           - The size of the generated images. Must be one of 256x256, 512x512, or 1024x1024.
+ * @param responseFormat - The format in which the generated images are returned. Must be one of url or b64_json.
+ * @param user           - A unique identifier representing your end-user,
+ *                       which can help OpenAI to monitor and detect abuse
+ */
 public record CreateImageEditRequest(String image,
                                      String mask,
                                      String prompt,
@@ -9,24 +24,15 @@ public record CreateImageEditRequest(String image,
                                      String user) {
 
     public CreateImageEditRequest {
-        //Providing the default values
-        if (n == null) n = 1;
-        if (size == null) size = "1024x1024";
-        if (responseFormat == null) responseFormat = "url";
-        if (user == null) user = "";
+        if (image == null || image.isBlank())
+            throw new IllegalArgumentException("image value can't be null or blank");
 
-        //Checking the restrictions
         if (prompt == null || prompt.isEmpty())
             throw new IllegalArgumentException("prompt value can't be null or empty");
+    }
 
-        if (n > 10 || n < 1)
-            throw new IllegalArgumentException("n value should be between [1, 10]");
-
-        if (!size.equals("1024x1024") && !size.equals("256x256") && !size.equals("512x512"))
-            throw new IllegalArgumentException("size value must be one of \"256x256\", \"512x512\", or \"1024x1024\"");
-
-        if (!responseFormat.equals("url") && !responseFormat.equals("b64_json"))
-            throw new IllegalArgumentException("responseFormat value must be one of \"url\" or \"b64_json\"");
+    public static Builder builder(String image, String prompt) {
+        return new Builder(image, prompt);
     }
 
     public static final class Builder {
