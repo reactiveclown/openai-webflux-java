@@ -1,5 +1,7 @@
 package com.reactiveclown.openaiwebfluxclient.client.edits;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -21,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  *                    <p>
  *                    We generally recommend altering this or temperature but not both.
  */
+@JsonInclude(Include.NON_NULL)
 public record CreateEditRequest(@JsonProperty("model") String model,
                                 @JsonProperty("input") String input,
                                 @JsonProperty("instruction") String instruction,
