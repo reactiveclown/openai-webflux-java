@@ -59,10 +59,18 @@ public class ImageServiceImpl implements ImagesService {
         String createImageVariation = "/images/variations";
         var multipartBodyBuilder = new MultipartBodyBuilder();
         multipartBodyBuilder.part("image", new PathResource(request.image()));
-        multipartBodyBuilder.part("n", request.n());
-        multipartBodyBuilder.part("size", request.size());
-        multipartBodyBuilder.part("response_format", request.responseFormat());
-        multipartBodyBuilder.part("user", request.user());
+
+        if (request.n() != null)
+            multipartBodyBuilder.part("n", request.n());
+
+        if (request.size() != null)
+            multipartBodyBuilder.part("size", request.size());
+
+        if (request.responseFormat() != null)
+            multipartBodyBuilder.part("response_format", request.responseFormat());
+
+        if (request.user() != null)
+            multipartBodyBuilder.part("user", request.user());
 
         return client.post()
                 .uri(createImageVariation)

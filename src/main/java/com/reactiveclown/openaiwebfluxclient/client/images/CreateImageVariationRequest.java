@@ -1,28 +1,33 @@
 package com.reactiveclown.openaiwebfluxclient.client.images;
 
+/**
+ * CreateImageVariationRequest.
+ *
+ * @param image          - The image to use as the basis for the variation(s).
+ *                       Must be a valid PNG file, less than 4MB, and square.
+ * @param n              - The number of images to generate. Must be between 1 and 10.
+ * @param size           - The size of the generated images.
+ *                       Must be one of 256x256, 512x512, or 1024x1024.
+ * @param responseFormat - The format in which the generated images are returned.
+ *                       Must be one of url or b64_json.
+ * @param user           - A unique identifier representing your end-user,
+ *                       which can help OpenAI to monitor and detect abuse.
+ */
 public record CreateImageVariationRequest(String image,
                                           Integer n,
                                           String size,
                                           String responseFormat,
                                           String user) {
 
-    public CreateImageVariationRequest{
-        //Providing the default values
-        if (n == null) n = 1;
-        if (size == null) size = "1024x1024";
-        if (responseFormat == null) responseFormat = "url";
-        if (user == null) user = "";
-
-        //Checking the restrictions
-        if (n > 10 || n < 1)
-            throw new IllegalArgumentException("n value should be between [1, 10]");
-
-        if (!size.equals("1024x1024") && !size.equals("256x256") && !size.equals("512x512"))
-            throw new IllegalArgumentException("size value must be one of \"256x256\", \"512x512\", or \"1024x1024\"");
-
-        if (!responseFormat.equals("url") && !responseFormat.equals("b64_json"))
-            throw new IllegalArgumentException("responseFormat value must be one of \"url\" or \"b64_json\"");
+    public CreateImageVariationRequest {
+        if (image == null || image.isBlank())
+            throw new IllegalArgumentException("image value can't be null or blank");
     }
+
+    public static Builder builder(String image) {
+        return new Builder(image);
+    }
+
     public static final class Builder {
         String image;
         Integer n;
