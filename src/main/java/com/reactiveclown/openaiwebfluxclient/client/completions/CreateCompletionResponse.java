@@ -1,7 +1,7 @@
 package com.reactiveclown.openaiwebfluxclient.client.completions;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.reactiveclown.openaiwebfluxclient.client.Usage;
+import com.reactiveclown.openaiwebfluxclient.client.UsageData;
 
 import java.util.List;
 import java.util.Map;
@@ -11,7 +11,7 @@ public record CreateCompletionResponse(@JsonProperty("id") String id,
                                        @JsonProperty("created") Long created,
                                        @JsonProperty("model") String model,
                                        @JsonProperty("choices") List<Choice> choices,
-                                       @JsonProperty("usage") Usage usage) {
+                                       @JsonProperty("usage") UsageData usage) {
 }
 
 record Choice(@JsonProperty("text") String text,

@@ -1,7 +1,7 @@
 package com.reactiveclown.openaiwebfluxclient.client.chat;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.reactiveclown.openaiwebfluxclient.client.Usage;
+import com.reactiveclown.openaiwebfluxclient.client.UsageData;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public record CreateChatCompletionResponse(@JsonProperty("id") String id,
                                            @JsonProperty("created") Long created,
                                            @JsonProperty("model") String model,
                                            @JsonProperty("choices") List<ChoiceData> choices,
-                                           @JsonProperty("usage") Usage usage) {
+                                           @JsonProperty("usage") UsageData usage) {
 }
 
 record ChoiceData(@JsonProperty("index") Integer index,

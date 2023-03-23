@@ -1,13 +1,13 @@
 package com.reactiveclown.openaiwebfluxclient.client.embeddings;
 
-import com.reactiveclown.openaiwebfluxclient.client.Usage;
+import com.reactiveclown.openaiwebfluxclient.client.UsageData;
 
 import java.util.List;
 
 public record CreateEmbeddingsResponse(String object,
                                        List<Embedding> data,
                                        String model,
-                                       Usage usage) {
+                                       UsageData usage) {
 }
 
 record Embedding(String object,
