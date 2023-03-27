@@ -8,12 +8,12 @@ public record RetrieveFineTuneResponse(@JsonProperty("id") String id,
                                        @JsonProperty("object") String object,
                                        @JsonProperty("model") String model,
                                        @JsonProperty("created_at") Long createdAt,
-                                       @JsonProperty("events") List<FineTuneEvent> events) {
+                                       @JsonProperty("events") List<FineTuneEventData> events) {
 }
 
-record FineTuneEvent(@JsonProperty("object") String object,
-                     @JsonProperty("created_at") Long createdAt,
-                     @JsonProperty("level") String level,
-                     @JsonProperty("message") String message) {
+record FineTuneEventData(@JsonProperty("object") String object,
+                         @JsonProperty("created_at") Long createdAt,
+                         @JsonProperty("level") String level,
+                         @JsonProperty("message") String message) {
 
 }
