@@ -10,11 +10,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>com.reactiveclown</groupId>
-	<artifactId>openai-webflux-client</artifactId>
-	<version>0.0.11</version>
+	<groupId>com.github.reactiveclown</groupId>
+	<artifactId>openai-webflux-client-spring-boot-starter</artifactId>
+	<version>0.0.1</version>
 	<name>openai-webflux-client</name>
-	<description>Reactive WebFlux OpenAI API Client in Java</description>
+	<description>OpenAI Webflux API client spring boot starter</description>
 
 	<properties>
 		<java.version>17</java.version>
