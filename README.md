@@ -12,7 +12,7 @@ It was written using WebFlux and Spring Boot. The library also contains pre-conf
 - ### [Contributing](#contributing)
 - ### [License](#licence)
 
-## <a name="supported"></a>Supported APIs
+## <a id="supported"></a>Supported APIs
 
 - [Audio service](#audio-service)
 - [Chat service](#chat-service)
@@ -25,7 +25,7 @@ It was written using WebFlux and Spring Boot. The library also contains pre-conf
 - [Models service](#models-service)
 - [Moderations service](#moderations-service)
 
-## <a name="installation"></a>Installation
+## <a id="installation"></a>Installation
 
 Dependency import via Maven:
 
@@ -39,17 +39,17 @@ Dependency import via Maven:
 ```
 
 Dependency import via Gradle:
-```mermaid
+```java
     the gradle dependency
 ```
 
-## <a name="usage"></a>Usage
+## <a id="usage"></a>Usage
 
 Here you can find some usage examples. 
 Also, each topic will lead you to the official OpenAI documentation.
 
 ---
-### <a name="audio-service"></a> Audio service
+### <a id="audio-service"></a> Audio service
 
 
 Some explanations with code
@@ -59,34 +59,34 @@ Some java code
 
 ---
 
-#### <a name="chat-service"></a>Chat service
+#### <a id="chat-service"></a>Chat service
 
 ---
-#### <a name="completions-service"></a>Completions service
+#### <a id="completions-service"></a>Completions service
 
 ---
-#### <a name="edits-service"></a>Edits service
+#### <a id="edits-service"></a>Edits service
 
 ---
-#### <a name="embeddings-service"></a>Embeddings service
+#### <a id="embeddings-service"></a>Embeddings service
 
 ---
-#### <a name="files-service"></a>Files service
+#### <a id="files-service"></a>Files service
 
 ---
-#### <a name="fine-tunes-service"></a>Fine-tunes service
+#### <a id="fine-tunes-service"></a>Fine-tunes service
 
 ---
-#### <a name="images-service"></a>Images service
+#### <a id="images-service"></a>Images service
 
 ---
-#### <a name="models-service"></a>Models service
+#### <a id="models-service"></a>Models service
 
 ---
-#### <a name="moderations-service"></a>Moderations service
+#### <a id="moderations-service"></a>Moderations service
 
-## <a name="contributing"></a>Contributing
+## <a id="contributing"></a>Contributing
 
 Indicate how others can contribute to the project, such as providing bug reports, feature requests, or pull requests.
 
-## <a name="licence"></a>License
+## <a id="licence"></a>License
