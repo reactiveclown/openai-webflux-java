@@ -38,12 +38,12 @@ To import via Maven use next dependency
 </dependency>
 ```
 
-## Usage
+## <a name="usage"></a>Usage
 
 Provide instructions on how to use the project. This could include details on APIs, endpoints, or features.
 
-## Contributing
+## <a name="contributing"></a>Contributing
 
 Indicate how others can contribute to the project, such as providing bug reports, feature requests, or pull requests.
 
-## License
+## <a name="licence"></a>License
