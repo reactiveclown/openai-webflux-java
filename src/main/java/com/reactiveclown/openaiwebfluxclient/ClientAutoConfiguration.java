@@ -1,12 +1,27 @@
 package com.reactiveclown.openaiwebfluxclient;
 
+import com.reactiveclown.openaiwebfluxclient.client.audio.AudioService;
+import com.reactiveclown.openaiwebfluxclient.client.audio.AudioServiceImpl;
+import com.reactiveclown.openaiwebfluxclient.client.chat.ChatService;
+import com.reactiveclown.openaiwebfluxclient.client.chat.ChatServiceImpl;
 import com.reactiveclown.openaiwebfluxclient.client.completions.CompletionsService;
 import com.reactiveclown.openaiwebfluxclient.client.completions.CompletionsServiceImpl;
+import com.reactiveclown.openaiwebfluxclient.client.edits.EditsService;
+import com.reactiveclown.openaiwebfluxclient.client.edits.EditsServiceImpl;
+import com.reactiveclown.openaiwebfluxclient.client.embeddings.EmbeddingsService;
+import com.reactiveclown.openaiwebfluxclient.client.embeddings.EmbeddingsServiceImpl;
+import com.reactiveclown.openaiwebfluxclient.client.files.FilesService;
+import com.reactiveclown.openaiwebfluxclient.client.files.FilesServiceImpl;
+import com.reactiveclown.openaiwebfluxclient.client.finetunes.FineTuneServiceImpl;
+import com.reactiveclown.openaiwebfluxclient.client.finetunes.FineTunesService;
 import com.reactiveclown.openaiwebfluxclient.client.images.ImageServiceImpl;
 import com.reactiveclown.openaiwebfluxclient.client.images.ImagesService;
 import com.reactiveclown.openaiwebfluxclient.client.models.ModelsService;
 import com.reactiveclown.openaiwebfluxclient.client.models.ModelsServiceImpl;
+import com.reactiveclown.openaiwebfluxclient.client.moderations.ModerationsService;
+import com.reactiveclown.openaiwebfluxclient.client.moderations.ModerationsServiceImpl;
 import com.reactiveclown.openaiwebfluxclient.exception.OpenAiException;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -42,6 +57,7 @@ public class ClientAutoConfiguration {
     }
 
     @Bean
+    @Qualifier("OpenAIClient")
     public WebClient webClient() {
         return WebClient.builder()
                 .baseUrl(properties.baseUrl())
@@ -54,22 +70,63 @@ public class ClientAutoConfiguration {
                 .build();
     }
 
-
     @Bean
     @ConditionalOnMissingBean
-    public ImagesService imagesService(WebClient client) {
-        return new ImageServiceImpl(client);
+    public AudioService audioService(@Qualifier("OpenAIClient") WebClient client) {
+        return new AudioServiceImpl(client);
     }
 
     @Bean
     @ConditionalOnMissingBean
-    public CompletionsService completionsService(WebClient client) {
+    public ChatService chatService(@Qualifier("OpenAIClient") WebClient client) {
+        return new ChatServiceImpl(client);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public CompletionsService completionsService(@Qualifier("OpenAIClient") WebClient client) {
         return new CompletionsServiceImpl(client);
     }
 
     @Bean
     @ConditionalOnMissingBean
-    public ModelsService modelsService(WebClient client) {
+    public EditsService editsService(@Qualifier("OpenAIClient") WebClient client) {
+        return new EditsServiceImpl(client);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public EmbeddingsService embeddingsService(@Qualifier("OpenAIClient") WebClient client) {
+        return new EmbeddingsServiceImpl(client);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public FilesService filesService(@Qualifier("OpenAIClient") WebClient client) {
+        return new FilesServiceImpl(client);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public FineTunesService fineTunesService(@Qualifier("OpenAIClient") WebClient client) {
+        return new FineTuneServiceImpl(client);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public ImagesService imagesService(@Qualifier("OpenAIClient") WebClient client) {
+        return new ImageServiceImpl(client);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public ModelsService modelsService(@Qualifier("OpenAIClient") WebClient client) {
         return new ModelsServiceImpl(client);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public ModerationsService moderationsService(@Qualifier("OpenAIClient") WebClient client){
+        return new ModerationsServiceImpl(client);
     }
 }
