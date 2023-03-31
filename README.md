@@ -14,20 +14,20 @@ It was written using WebFlux and Spring Boot. The library also contains pre-conf
 
 ## <a name="supported"></a>Supported APIs
 
-- Audio service
-- Chat service
-- Completions service
-- Edits service
-- Embeddings service
-- Files service
-- Fine-tunes service
-- Images service
-- Models service
-- Moderations service
+- [Audio service](#audio-service)
+- [Chat service](#chat-service)
+- [Completions service](#completions-service)
+- [Edits service](#edits-service)
+- [Embeddings service](#embeddings-service)
+- [Files service](#files-service)
+- [Fine-tunes service](#fine-tunes-service)
+- [Images service](#images-service)
+- [Models service](#models-service)
+- [Moderations service](#moderations-service)
 
 ## <a name="installation"></a>Installation
 
-To import via Maven use next dependency
+Dependency import via Maven:
 
 ```xml
 
@@ -38,9 +38,52 @@ To import via Maven use next dependency
 </dependency>
 ```
 
+Dependency import via Gradle:
+```mermaid
+    the gradle dependency
+```
+
 ## <a name="usage"></a>Usage
 
-Here you can find some usage examples
+Here you can find some usage examples. 
+Also, each topic will lead you to the official OpenAI documentation.
+
+---
+### <a name="audio-service"></a> Audio service
+
+
+Some explanations with code
+```java
+Some java code
+```
+
+---
+
+#### <a name="chat-service"></a>Chat service
+
+---
+#### <a name="completions-service"></a>Completions service
+
+---
+#### <a name="edits-service"></a>Edits service
+
+---
+#### <a name="embeddings-service"></a>Embeddings service
+
+---
+#### <a name="files-service"></a>Files service
+
+---
+#### <a name="fine-tunes-service"></a>Fine-tunes service
+
+---
+#### <a name="images-service"></a>Images service
+
+---
+#### <a name="models-service"></a>Models service
+
+---
+#### <a name="moderations-service"></a>Moderations service
 
 ## <a name="contributing"></a>Contributing
 
