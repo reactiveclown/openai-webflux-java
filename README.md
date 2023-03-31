@@ -1,22 +1,42 @@
 # Reactive OpenAI API client library.
 
-This is the Reactive OpenAI client library. It was written using WebFlux and Spring Boot. The library also contains pre-configured Spring Boot starter for easier usage.
+This is the Reactive OpenAI client library. 
 
-## Table of Contents
+It was written using WebFlux and Spring Boot. The library also contains pre-configured Spring Boot starter for easier usage.
 
-- Supported APIs
-- Installation
-- Usage
-- Contributing
-- License
+# Table of Contents
 
-## Supported APIs
+- ### [Supported APIs](#supported)
+- ### [Installation]("installation)
+- ### [Usage](#usage)
+- ### [Contributing](#contributing)
+- ### [License](#licence)
 
+## <a name="supported"></a>Supported APIs
 
+- Audio service
+- Chat service
+- Completions service
+- Edits service
+- Embeddings service
+- Files service
+- Fine-tunes service
+- Images service
+- Models service
+- Moderations service
 
-## Installation
+## <a name="installation"></a>Installation
 
-Describe the installation process, including any setup steps or instructions for building and running the project.
+To import via Maven use next dependency
+
+```xml
+
+<dependency>
+    <groupId>com.github.reactiveclown</groupId>
+    <artifactId>openai-webflux-client-spring-boot-starter</artifactId>
+    <version>version</version>
+</dependency>
+```
 
 ## Usage
 
