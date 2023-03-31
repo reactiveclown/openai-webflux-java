@@ -14,7 +14,7 @@ public class ChatServiceImpl implements ChatService{
 
     @Override
     public Mono<CreateChatCompletionResponse> createChatCompletion(CreateChatCompletionRequest request) {
-        String createChatCompletionUrl = "/completions";
+        String createChatCompletionUrl = "/chat/completions";
         return client.post()
                 .uri(createChatCompletionUrl)
                 .bodyValue(request)
