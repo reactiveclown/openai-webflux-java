@@ -7,7 +7,7 @@ It was written using WebFlux and Spring Boot. The library also contains pre-conf
 # Table of Contents
 
 - ### [Supported APIs](#supported)
-- ### [Installation]("installation)
+- ### [Installation](#installation)
 - ### [Usage](#usage)
 - ### [Contributing](#contributing)
 - ### [License](#licence)
@@ -40,7 +40,7 @@ To import via Maven use next dependency
 
 ## <a name="usage"></a>Usage
 
-Provide instructions on how to use the project. This could include details on APIs, endpoints, or features.
+Here you can find some usage examples
 
 ## <a name="contributing"></a>Contributing
 
