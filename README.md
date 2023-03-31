@@ -7,9 +7,9 @@ It was written using WebFlux and Spring Boot. The library also contains pre-conf
 # Table of Contents
 
 - ### [Supported APIs](#supported)
-- ### [Installation](#installation)
-- ### [Usage](#usage)
-- ### [Contributing](#contributing)
+- ### [Installation](#installations)
+- ### [Usage](#usages)
+- ### [Contributing](#contributings)
 - ### [License](#licence)
 
 ## <a id="supported"></a>Supported APIs
@@ -25,7 +25,7 @@ It was written using WebFlux and Spring Boot. The library also contains pre-conf
 - [Models service](#models-service)
 - [Moderations service](#moderations-service)
 
-## <a id="installation"></a>Installation
+## <a id="installations"></a>Installation
 
 Dependency import via Maven:
 
@@ -43,7 +43,7 @@ Dependency import via Gradle:
     the gradle dependency
 ```
 
-## <a id="usage"></a>Usage
+## <a id="usages"></a>Usage
 
 Here you can find some usage examples. 
 Also, each topic will lead you to the official OpenAI documentation.
@@ -85,7 +85,7 @@ Some java code
 ---
 #### <a id="moderations-service"></a>Moderations service
 
-## <a id="contributing"></a>Contributing
+## <a id="contributings"></a>Contributing
 
 Indicate how others can contribute to the project, such as providing bug reports, feature requests, or pull requests.
 
