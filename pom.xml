@@ -16,7 +16,7 @@
 
 	<groupId>io.github.reactiveclown</groupId>
 	<artifactId>openai-webflux-client-spring-boot-starter</artifactId>
-	<version>0.9.0</version>
+	<version>0.9.1</version>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>OpenAI Webflux API client with spring boot starter</description>
 	<url>https://github.com/reactiveclown/openai-webflux-java</url>
