@@ -1,3 +1,5 @@
+![Maven Central](https://img.shields.io/maven-central/v/io.github.reactiveclown/openai-webflux-client-spring-boot-starter?color=green)
+![Stars](https://img.shields.io/github/stars/reactiveclown/openai-webflux-java?style=social)
 # Reactive OpenAI API client library.
 
 This is the Reactive OpenAI client library.
@@ -53,10 +55,26 @@ Also, kindly use the official documentation in order to get more information abo
 
 [OpenAI Models Docs](https://platform.openai.com/docs/api-reference/models)
 
-Some explanations with code
+Models service is used to retrieve the list of models or information about specific model.
 
 ```java
-Some java code
+@Service
+public class ExampleService {
+
+    private final ModelsService service;
+
+    public ExampleService(ModelsService service) {
+        this.service = service;
+    }
+
+    public Mono<ListModelsResponse> listModels() {
+        return service.listModels();
+    }
+
+    public Mono<RetrieveModelResponse> retrieveModel(String modelName) {
+        return service.retrieveModel(modelName);
+    }
+}
 ```
 ---
 
@@ -64,10 +82,27 @@ Some java code
 
 [OpenAI Completions Docs](https://platform.openai.com/docs/api-reference/completions)
 
-Some explanations with code
+Completions service is used to complete the text. Fell free to play around with builder parameters.
 
 ```java
-Some java code
+@Service
+public class ExampleService {
+
+    private final CompletionsService service;
+
+    public ExampleService(CompletionsService service) {
+        this.service = service;
+    }
+
+    public Mono<CreateCompletionResponse> createCompletion() {
+        return service.createCompletion(
+                CreateCompletionRequest
+                        .builder("babbage")
+                        .n(2)
+                        .bestOf(1)
+                        .build());
+    }
+}
 ```
 ---
 
@@ -75,10 +110,26 @@ Some java code
 
 [OpenAI Chat Docs](https://platform.openai.com/docs/api-reference/chat)
 
-Some explanations with code
+Chat service is used to chat with the chat models. Fell free to play around with builder parameters.
 
 ```java
-Some java code
+@Service
+public class ExampleService {
+
+    private final ChatService service;
+
+    public ExampleService(ChatService service) {
+        this.service = service;
+    }
+
+    public Mono<CreateChatCompletionResponse> createChatCompletion() {
+        return service.createChatCompletion(
+                CreateChatCompletionRequest
+                        .builder("gpt-3.5-turbo", List.of(new MessageData("user","do something")))
+                        .n(3)
+                        .build());
+    }
+}
 ```
 ---
 
@@ -86,10 +137,26 @@ Some java code
 
 [OpenAI Edits Docs](https://platform.openai.com/docs/api-reference/edits)
 
-Some explanations with code
+Edits service is used to make an edits to the provided input. Fell free to play around with builder parameters.
 
 ```java
-Some java code
+@Service
+public class ExampleService {
+
+    private final EditsService service;
+
+    public ExampleService(EditsService service) {
+        this.service = service;
+    }
+
+    public Mono<CreateEditResponse> createEdit() {
+        return service.createEdit(
+                CreateEditRequest
+                        .builder("babbage", "Add one digit after every word")
+                        .input("One Two Three")
+                        .build());
+    }
+}
 ```
 ---
 
@@ -97,10 +164,45 @@ Some java code
 
 [OpenAI Images Docs](https://platform.openai.com/docs/api-reference/images)
 
-Some explanations with code
+Image service is used to generate a different images and their transformations.
+> ⚠️ As for now, methods that are requiring images are blocking. In the nearest future it is planned to add async FilePart implementation.
 
 ```java
-Some java code
+@Service
+public class ExampleService {
+
+    private final ImagesService service;
+
+    public ExampleService(ImagesService service) {
+        this.service = service;
+    }
+
+    //Non-blocking
+    public Mono<CreateImageResponse> createImage() {
+        return service.createImage(
+                CreateImageRequest
+                        .builder("Generate a digital art of Ukraine")
+                        .build());
+    }
+
+    //Blocking
+    public Mono<CreateImageVariationResponse> createImageVariation() {
+        return service.createImageVariation(
+                CreateImageVariationRequest
+                        .builder("src/main/resources/exampleImage.png")
+                        .size("512x512")
+                        .build());
+    }
+
+    //Blocking
+    public Mono<CreateImageEditResponse> createImageEdit() {
+        return service.createImageEdit(
+                CreateImageEditRequest
+                        .builder("src/main/resources/exampleImage.png", "Generate a green fields")
+                        .mask("src/main/resources/exampleMask.png")
+                        .build());
+    }
+}
 ```
 ---
 
@@ -108,10 +210,25 @@ Some java code
 
 [OpenAI Embeddings Docs](https://platform.openai.com/docs/api-reference/embeddings)
 
-Some explanations with code
+Embedding service is used to create embeddings. Fell free to play around with builder parameters.
 
 ```java
-Some java code
+@Service
+public class ExampleService {
+
+    private final EmbeddingsService service;
+
+    public ExampleService(EmbeddingsService service) {
+        this.service = service;
+    }
+
+    public Mono<CreateEmbeddingsResponse> createEmbeddings(){
+        return service.createEmbeddings(
+                CreateEmbeddingsRequest
+                        .builder("babbage", "example input")
+                        .build());
+    }
+}
 ```
 ---
 
@@ -119,10 +236,34 @@ Some java code
 
 [OpenAI Audio Docs](https://platform.openai.com/docs/api-reference/audio)
 
-Some explanations with code
+Audio service is used to turn audio into text, also to make a translations into English. Fell free to play around with builder parameters.
+> ⚠️ As for now, methods that are requiring audio files are blocking. In the nearest future it is planned to add async FilePart implementation.
 
 ```java
-Some java code
+@Service
+public class ExampleService {
+
+    private final AudioService service;
+
+    public ExampleService(AudioService service) {
+        this.service = service;
+    }
+
+    //Blocking
+    public Mono<CreateTranscriptionResponse> createTranscription() {
+        return service.createTranscription(
+                CreateTranscriptionRequest
+                        .builder("src/main/resources/exampleAudio.mp3", "whisper-1")
+                        .build());
+    }
+
+    //Blocking
+    public Mono<CreateTranslationResponse> createTranslation(){
+        return service.createTranslation(CreateTranslationRequest
+                .builder("src/main/resources/exampleAudio.mp3", "whisper-1")
+                .build());
+    }
+}
 ```
 ---
 
@@ -130,10 +271,43 @@ Some java code
 
 [OpenAI Files Docs](https://platform.openai.com/docs/api-reference/files)
 
-Some explanations with code
+File service is used to upload and work with files. Fell free to play around with builder parameters.
+> ⚠️ As for now, methods that are requiring files are blocking. In the nearest future it is planned to add async FilePart implementation.
 
 ```java
-Some java code
+@Service
+public class ExampleService {
+
+    private final FilesService service;
+
+    public ExampleService(FilesService service) {
+        this.service = service;
+    }
+
+    public Mono<ListFilesResponse> listFilesResponse() {
+        return service.listFiles();
+    }
+    
+    //Blocking
+    public Mono<UploadFileResponse> uploadFile() {
+        return service.uploadFile(
+                UploadFileRequest
+                        .builder("src/main/resources/exampleFile.jsonl", "finetune")
+                        .build());
+    }
+
+    public Mono<DeleteFileResponse> deleteFile() {
+        return service.deleteFile("fileId");
+    }
+
+    public Mono<RetrieveFileResponse> retrieveFile() {
+        return service.retrieveFile("fileId");
+    }
+
+    public Mono<String> retrieveFileContent() {
+        return service.retrieveFileContent("fileId");
+    }
+}
 ```
 ---
 
@@ -141,10 +315,45 @@ Some java code
 
 [OpenAI Fine-tunes Docs](https://platform.openai.com/docs/api-reference/fine-tunes)
 
-Some explanations with code
+Fine-tunes service is used to work with fine-tune files and models. Fell free to play around with builder parameters.
 
 ```java
-Some java code
+@Service
+public class ExampleService {
+
+    private final FineTunesService service;
+
+    public ExampleService(FineTunesService service) {
+        this.service = service;
+    }
+
+    public Mono<CreateFineTuneResponse> createFineTune(){
+        return service.createFineTune(
+                CreateFineTuneRequest
+                        .builder("trainingFileId")
+                        .build());
+    }
+
+    public Mono<ListFineTunesResponse> listFineTunes(){
+        return service.listFineTunes();
+    }
+
+    public Mono<RetrieveFineTuneResponse> retrieveFineTune(){
+        return service.retrieveFineTunes("fineTuneId");
+    }
+
+    public Mono<CancelFineTuneResponse> cancelFineTune(){
+        return service.cancelFineTune("fineTuneId");
+    }
+
+    public Mono<ListFineTuneEventsResponse> listFineTuneEvents(){
+        return service.listFineTuneEvents("fineTuneId");
+    }
+
+    public Mono<DeleteFineTuneModelResponse> deleteFineTuneModel(){
+        return service.deleteFineTuneModel("modelId");
+    }
+}
 ```
 ---
 
@@ -152,16 +361,29 @@ Some java code
 
 [OpenAI Moderations Docs](https://platform.openai.com/docs/api-reference/moderations)
 
-Some explanations with code
+Moderations service is used to check for moderation violations. Fell free to play around with builder parameters.
 
 ```java
-Some java code
+@Service
+public class ExampleService {
+
+    private final ModerationsService service;
+
+    public ExampleService(ModerationsService service) {
+        this.service = service;
+    }
+
+    public Mono<CreateModerationResponse> createModeration() {
+        return service.createModeration(
+                CreateModerationRequest.builder("violating input").build());
+    }
+}
 ```
 
 ## <a id="contributings"></a>How can I help?
 
 This is the open-source library, any help will be much appreciated. If you can see that there is a way to improve the code or functionality,
-kindly fill out the issue or make a pull request with your changes.
+kindly fill out the issue or make a pull request with your changes. Also feel free to look at opened issues and submit a pull request if you have your solution.
 
 ## <a id="licence"></a>License
 
