@@ -45,6 +45,19 @@ Dependency import via **Gradle**:
 
 ```implementation 'io.github.reactiveclown:openai-webflux-client-spring-boot-starter:0.9.1'```
 
+
+After adding the dependency remember to add yor OpenAI api key to the application.properties.
+```properties
+com.github.reactiveclown.openai.apiKey=OPENAI_API_KEY
+```
+
+You can also add the Organization id and change baseUrl by providing next configuration variables.
+But this step is not mandatory one.
+```properties
+com.github.reactiveclown.openai.organizationId=OPENAI_ORGANIZATION_ID
+com.github.reactiveclown.openai.baseUrl=OPENAI_CUSTOM_BASE_URL
+```
+
 ## <a id="usages"></a>Usage
 
 Here you can find some usage examples.
