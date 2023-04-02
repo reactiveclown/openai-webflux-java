@@ -17,15 +17,15 @@ usage.
 
 ## <a id="supported"></a>Supported APIs
 
-- [Audio service](#audio-service)
-- [Chat service](#chat-service)
+- [Models service](#models-service)
 - [Completions service](#completions-service)
+- [Chat service](#chat-service)
 - [Edits service](#edits-service)
+- [Images service](#images-service)
 - [Embeddings service](#embeddings-service)
+- [Audio service](#audio-service)
 - [Files service](#files-service)
 - [Fine-tunes service](#fine-tunes-service)
-- [Images service](#images-service)
-- [Models service](#models-service)
 - [Moderations service](#moderations-service)
 
 ## <a id="installations"></a>Installation
