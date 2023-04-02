@@ -1,8 +1,9 @@
 # Reactive OpenAI API client library.
 
-This is the Reactive OpenAI client library. 
+This is the Reactive OpenAI client library.
 
-It was written using WebFlux and Spring Boot. The library also contains pre-configured Spring Boot starter for easier usage.
+It was written using WebFlux and Spring Boot. The library also contains pre-configured Spring Boot starter for easier
+usage.
 
 # Table of Contents
 
@@ -27,69 +28,143 @@ It was written using WebFlux and Spring Boot. The library also contains pre-conf
 
 ## <a id="installations"></a>Installation
 
-Dependency import via Maven:
+Dependency import via **Maven**:
 
 ```xml
 
 <dependency>
-    <groupId>com.github.reactiveclown</groupId>
+    <groupId>io.github.reactiveclown</groupId>
     <artifactId>openai-webflux-client-spring-boot-starter</artifactId>
-    <version>version</version>
+    <version>0.9.1</version>
 </dependency>
 ```
 
-Dependency import via Gradle:
-```java
-    the gradle dependency
-```
+Dependency import via **Gradle**:
+
+```implementation 'io.github.reactiveclown:openai-webflux-client-spring-boot-starter:0.9.1'```
 
 ## <a id="usages"></a>Usage
 
-Here you can find some usage examples. 
-Also, each topic will lead you to the official OpenAI documentation.
-
----
-### <a id="audio-service"></a> Audio service
-
-
-Some explanations with code
-```java
-Some java code
-```
-
----
-
-#### <a id="chat-service"></a>Chat service
-
----
-#### <a id="completions-service"></a>Completions service
-
----
-#### <a id="edits-service"></a>Edits service
-
----
-#### <a id="embeddings-service"></a>Embeddings service
-
----
-#### <a id="files-service"></a>Files service
-
----
-#### <a id="fine-tunes-service"></a>Fine-tunes service
-
----
-#### <a id="images-service"></a>Images service
+Here you can find some usage examples.
+Also, kindly use the official documentation in order to get more information about parameters.
 
 ---
 #### <a id="models-service"></a>Models service
 
+[OpenAI Models Docs](https://platform.openai.com/docs/api-reference/models)
+
+Some explanations with code
+
+```java
+Some java code
+```
 ---
+
+#### <a id="completions-service"></a>Completions service
+
+[OpenAI Completions Docs](https://platform.openai.com/docs/api-reference/completions)
+
+Some explanations with code
+
+```java
+Some java code
+```
+---
+
+#### <a id="chat-service"></a>Chat service
+
+[OpenAI Chat Docs](https://platform.openai.com/docs/api-reference/chat)
+
+Some explanations with code
+
+```java
+Some java code
+```
+---
+
+#### <a id="edits-service"></a>Edits service
+
+[OpenAI Edits Docs](https://platform.openai.com/docs/api-reference/edits)
+
+Some explanations with code
+
+```java
+Some java code
+```
+---
+
+#### <a id="images-service"></a>Images service
+
+[OpenAI Images Docs](https://platform.openai.com/docs/api-reference/images)
+
+Some explanations with code
+
+```java
+Some java code
+```
+---
+
+#### <a id="embeddings-service"></a>Embeddings service
+
+[OpenAI Embeddings Docs](https://platform.openai.com/docs/api-reference/embeddings)
+
+Some explanations with code
+
+```java
+Some java code
+```
+---
+
+#### <a id="audio-service"></a> Audio service
+
+[OpenAI Audio Docs](https://platform.openai.com/docs/api-reference/audio)
+
+Some explanations with code
+
+```java
+Some java code
+```
+---
+
+#### <a id="files-service"></a>Files service
+
+[OpenAI Files Docs](https://platform.openai.com/docs/api-reference/files)
+
+Some explanations with code
+
+```java
+Some java code
+```
+---
+
+#### <a id="fine-tunes-service"></a>Fine-tunes service
+
+[OpenAI Fine-tunes Docs](https://platform.openai.com/docs/api-reference/fine-tunes)
+
+Some explanations with code
+
+```java
+Some java code
+```
+---
+
 #### <a id="moderations-service"></a>Moderations service
 
-## <a id="contributings"></a>Contributing
+[OpenAI Moderations Docs](https://platform.openai.com/docs/api-reference/moderations)
 
-Indicate how others can contribute to the project, such as providing bug reports, feature requests, or pull requests.
+Some explanations with code
+
+```java
+Some java code
+```
+
+## <a id="contributings"></a>How can I help?
+
+This is the open-source library, any help will be much appreciated. If you can see that there is a way to improve the code or functionality,
+kindly fill out the issue or make a pull request with your changes.
 
 ## <a id="licence"></a>License
+
 ```text
 MIT License
 
