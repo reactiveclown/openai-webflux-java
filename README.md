@@ -7,6 +7,8 @@ This is the Reactive OpenAI client library.
 It was written using WebFlux and Spring Boot. The library also contains pre-configured Spring Boot starter for easier
 usage.
 
+The library is unofficial and community-maintained. Feel free to join the development.
+
 # Table of Contents
 
 - ### [Supported APIs](#supported)
