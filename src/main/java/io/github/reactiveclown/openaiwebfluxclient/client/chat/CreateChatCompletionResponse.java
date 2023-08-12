@@ -13,8 +13,3 @@ public record CreateChatCompletionResponse(@JsonProperty("id") String id,
                                            @JsonProperty("usage") UsageData usage) {
 }
 
-record ChoiceData(@JsonProperty("index") Integer index,
-                  @JsonProperty("message") MessageData message,
-                  @JsonProperty("finish_reason") String finishReason) {
-
-}
