@@ -58,13 +58,22 @@ public record CreateChatCompletionRequest(@JsonProperty("model") String model,
                                           @JsonProperty("presence_penalty") Double presencePenalty,
                                           @JsonProperty("frequency_penalty") Double frequencyPenalty,
                                           @JsonProperty("logit_bias") Map<String, Integer> logitBias,
-                                          @JsonProperty("user") String user) {
+                                          @JsonProperty("user") String user,
+                                          @JsonProperty("stream") Boolean stream) {
     public CreateChatCompletionRequest {
         if (model == null || model.isBlank())
             throw new IllegalArgumentException("model value can't be null or blank");
 
         if (messages == null || messages.isEmpty())
             throw new IllegalArgumentException("messages can't be null or empty");
+    }
+
+    public CreateChatCompletionRequest withStream() {
+        return new CreateChatCompletionRequest(
+                model, messages, temperature,
+                topP, n, stop, maxTokens,
+                presencePenalty, frequencyPenalty, logitBias,
+                user, true);
     }
 
     public static Builder builder(String model, List<MessageData> messages) {
@@ -83,13 +92,14 @@ public record CreateChatCompletionRequest(@JsonProperty("model") String model,
         private Double frequencyPenalty;
         private Map<String, Integer> logitBias;
         private String user;
+        private Boolean stream;
 
         public CreateChatCompletionRequest build() {
             return new CreateChatCompletionRequest(
                     model, messages, temperature,
                     topP, n, stop, maxTokens,
                     presencePenalty, frequencyPenalty, logitBias,
-                    user);
+                    user, stream);
         }
 
         public Builder(String model, List<MessageData> messages) {
@@ -144,6 +154,11 @@ public record CreateChatCompletionRequest(@JsonProperty("model") String model,
 
         public Builder user(String user) {
             this.user = user;
+            return this;
+        }
+
+        public Builder stream(Boolean stream) {
+            this.stream = stream;
             return this;
         }
 
