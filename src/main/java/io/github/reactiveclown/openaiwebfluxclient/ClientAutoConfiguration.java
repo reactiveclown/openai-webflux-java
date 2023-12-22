@@ -1,5 +1,6 @@
 package io.github.reactiveclown.openaiwebfluxclient;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.reactiveclown.openaiwebfluxclient.client.audio.AudioService;
 import io.github.reactiveclown.openaiwebfluxclient.client.audio.AudioServiceImpl;
 import io.github.reactiveclown.openaiwebfluxclient.client.chat.ChatService;
@@ -78,8 +79,8 @@ public class ClientAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
-    public ChatService chatService(@Qualifier("OpenAIClient") WebClient client) {
-        return new ChatServiceImpl(client);
+    public ChatService chatService(@Qualifier("OpenAIClient") WebClient client, ObjectMapper objectMapper) {
+        return new ChatServiceImpl(client, objectMapper);
     }
 
     @Bean
